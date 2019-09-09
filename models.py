@@ -44,8 +44,8 @@ class FaceTranslation:
 		self.encoder = self.build_encoder()
 		self.decoder = self.build_decoder()
 		try:
-			self.encoder.load_weights(f"weights/encoder.h5")
-			self.decoder.load_weights(f"weights/decoder.h5")
+			self.encoder.load_weights("/content/face_translation/encoder.h5")
+			self.decoder.load_weights("/content/face_translation/decoder.h5")
 			print("Found checkpoints in weights folder. Built model with pre-trained weights.")
 		except:
 			print("Model built with default initializaiton.")
