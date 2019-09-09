@@ -29,7 +29,7 @@ class FTSession:
 		self.tar, self.emb_tar = utils.get_tar_inputs(imgs, self.ft.fd, self.ft.fv)
 	
 	def output(self):
-		self.out	= ft_instance.inference(self.src, self.mask, self.tar, self.emb_tar)
+		self.out	= self.ft.inference(self.src, self.mask, self.tar, self.emb_tar)
 		result_face	= np.squeeze(((out[0] + 1) * 255 / 2).astype(np.uint8))
 		return utils.post_process_result(self.src, self.ft.fd, result_face, self.aligned_im, self.src, self.x0, self.y0, self.x1, self.y1, self.landmarks)
 		
