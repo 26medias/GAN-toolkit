@@ -65,16 +65,16 @@ class FaceTranslation:
 	
 	def init_models(self):
 		print("Initiating the face verifier...")
-		self.fv = FaceVerifier(classes=512)
+		self.fv = FaceVerifier(classes=512, weights_path="/content/face-recognition/facenet_keras_weights_VGGFace2.h5")
 		
 		print("Initiating the face parser...")
-		self.fp = face_parser.FaceParser()
+		self.fp = face_parser.FaceParser(path_bisenet_weights="/content/face-segmentation/BiSeNet_keras.h5")
 		
 		print("Initiating the face alignemnt...")
-		self.fd = face_detector.FaceAlignmentDetector()
+		self.fd = face_detector.FaceAlignmentDetector(fd_weights_path="/content/face-detector/s3fd_keras_weights.h5", lmd_weights_path="/content/face-alignment/2DFAN-4_keras.h5")
 		
 		print("Initiating the iris detector...")
-		self.idet = IrisDetector()
+		self.idet = IrisDetector(path_elg_weights="/content/eye-detector/elg_keras.h5")
 	
 	def load_weights(self, weights_path):
 		self.encoder.load_weights(os.path.join(weights_path, "encoder.h5"))
