@@ -41,8 +41,8 @@ from scipy.cluster import	hierarchy
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import csv
-from models.detector import face_detector
-from models.parser import face_parser
+from detector import face_detector
+from parser import face_parser
 from utils.visualize import show_parsing_with_annos
 from threading import Thread
 
