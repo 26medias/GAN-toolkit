@@ -70,7 +70,7 @@ class builder():
 
 		# Create a face detector
 		print("Creating the face detector model")
-		self.fd = face_detector.FaceAlignmentDetector(lmd_weights_path="models/detector/FAN/2DFAN-4_keras.h5")
+		self.fd = face_detector.FaceAlignmentDetector(lmd_weights_path="/content/face-alignment/2DFAN-4_keras.h5")
 
 		# Create a face parser (segmentation)
 		print("Creating the face segmentation model")
