@@ -45,6 +45,42 @@ from detector import face_detector
 from parser import face_parser
 from utils.visualize import show_parsing_with_annos
 from threading import Thread
+import threading
+
+
+
+
+class pystack:
+	def __init__(self, stackSize=5):
+		self.started = False
+		self.stackSize = stackSize
+		self.stack = []
+	
+	def add(self, fn, args):
+		self.stack.append((fn, args))
+		if self.started is False:
+			self.start()
+	
+	def start(self):
+		self.started = True
+		self.processNextStack()
+		print("Done.")
+		self.started = False
+	
+	def processNextStack(self):
+		if len(self.stack)==0:
+			return False
+		stack = self.stack[0:self.stackSize]
+		self.stack = self.stack[self.stackSize:]
+		for item in stack:
+			fn, args = item
+			t = threading.Thread(target=fn, args=args)
+			t.start()
+			t.join()
+		print("All threads done!")
+		self.processNextStack()
+
+
 
 
 class builder():
@@ -266,6 +302,10 @@ class builder():
 		if limit==1 and len(faces)==0:
 			return False
 		return faces, landmarks, segmentations
+
+
+
+
 
 	# Export the frames out of a video at a specific fps
 	def videoToFaces(self, filename, maxFrame=0):
