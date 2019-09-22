@@ -30,6 +30,7 @@ class FTSession:
 	
 	def output(self):
 		self.out	= self.ft.inference(self.src, self.mask, self.tar, self.emb_tar)
+		
 		result_face	= np.squeeze(((self.out[0] + 1) * 255 / 2).astype(np.uint8))
 		return self.out, result_face
 		#return utils.post_process_result(self.src, self.ft.fd, result_face, self.aligned_im, self.src, self.x0, self.y0, self.x1, self.y1, self.landmarks)
