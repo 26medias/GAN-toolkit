@@ -3,7 +3,7 @@ import scipy
 from .model import s3fd_keras
 
 class S3FD():
-    def __init__(self, weights_path="./detector/s3fd/s3fd_keras_weights.h5"):
+    def __init__(self, weights_path="/content/face-detector/s3fd_keras_weights.h5"):
         self.net = s3fd_keras()
         self.net.load_weights(weights_path)
     

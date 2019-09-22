@@ -17,7 +17,7 @@ class BaseLandmarksDetector():
         raise NotImplementedError()
 
 class FANLandmarksDetector(BaseLandmarksDetector):
-    def __init__(self, path_to_weights_file=FILE_PATH+"/FAN/2DFAN-4_keras.h5"):
+    def __init__(self, path_to_weights_file="/content/face-alignment/2DFAN-4_keras.h5"):
         if not tf.__version__ >= '1.13':
             self.net = load_model(path_to_weights_file)
         else:

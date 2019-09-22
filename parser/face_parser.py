@@ -7,7 +7,7 @@ from .BiSeNet.bisenet import BiSeNet_keras
 FILE_PATH = str(Path(__file__).parent.resolve())
 
 class FaceParser():
-    def __init__(self, path_bisenet_weights=FILE_PATH+"/BiSeNet/BiSeNet_keras.h5", detector=None):
+    def __init__(self, path_bisenet_weights="/content/face-segmentation/BiSeNet_keras.h5", detector=None):
         self.parser_net = None
         self.detector = detector
     
