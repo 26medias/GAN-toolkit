@@ -84,12 +84,13 @@ class pystack:
 
 
 class builder():
-	def __init__(self, VIDEO_QUALITY="720", FRAME_PERCENTAGE=40, DIR_VIDEOS="Videos", DIR_FACES="Faces"):
+	def __init__(self, VIDEO_QUALITY="720", FRAME_PERCENTAGE=40, DIR_VIDEOS="Videos", DIR_FACES="Faces", OUTPUT_SIZE=224):
 		# The variables
 		self.VIDEO_QUALITY     = VIDEO_QUALITY     # The trailer quality we'll download: 480, 720 or 1080
 		self.FRAME_PERCENTAGE  = FRAME_PERCENTAGE  # from 0.1 to 100: The percentage of frames that will be analyzed in the video
 		self.DIR_VIDEOS        = DIR_VIDEOS
 		self.DIR_FACES         = DIR_FACES
+		self.OUTPUT_SIZE       = OUTPUT_SIZE
 
 		if not os.path.isdir(self.DIR_VIDEOS):
 			os.mkdir(self.DIR_VIDEOS, 755);
@@ -339,7 +340,7 @@ class builder():
 				c+=1
 				#print("Checking faces in frame #"+str(i))
 				#frameFaces = self.extractFacesFromImage(frame)
-				frameFaces, frameLandmarks, frameSegmentations = self.extractFacesLandmarksAndSegmentationFromImage(frame)
+				frameFaces, frameLandmarks, frameSegmentations = self.extractFacesLandmarksAndSegmentationFromImage(frame, required_size=(self.OUTPUT_SIZE, self.OUTPUT_SIZE))
 				out.update(self.progress(c, processFrames))
 				for nf, f in enumerate(frameFaces):
 					faces.append(f)
