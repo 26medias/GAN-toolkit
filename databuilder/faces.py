@@ -28,6 +28,7 @@ from matplotlib import pyplot
 from PIL import Image
 import numpy as np
 from numpy import asarray
+import scipy
 from scipy.spatial.distance import cosine
 from mtcnn.mtcnn import MTCNN
 import keras_vggface
@@ -412,7 +413,10 @@ class builder():
 	def get_embeddings(self, faces):
 		print("Calculating the embeddings...")
 		# convert into an array of samples
-		samples = asarray(faces, 'float32')
+		samples = []
+		for img in faces:
+			samples.append(scipy.misc.imresize(img, (224, 224)))
+		samples = asarray(samples, 'float32')
 		# prepare the face for the model, e.g. center pixels
 		samples = preprocess_input(samples, version=2)
 		# perform prediction
