@@ -415,7 +415,7 @@ class builder():
 		# convert into an array of samples
 		samples = []
 		for img in faces:
-			samples.append(scipy.misc.imresize(img, (224, 224)))
+			samples.append(cv2.resize(img, (224,224), interpolation=cv2.INTER_CUBIC))
 		samples = asarray(samples, 'float32')
 		# prepare the face for the model, e.g. center pixels
 		samples = preprocess_input(samples, version=2)
